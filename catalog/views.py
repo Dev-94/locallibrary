@@ -9,14 +9,14 @@ class BookDetailView(generic.DetailView):
 
 class BookListView(generic.ListView):
     model = Book
-    # your own name for the list as a template variable
-    context_object_name = 'my_book_list'
-    # Get 5 books containing the title war, below is same as following
-    # def get_queryset(self):
-    # return Book.objects.filter(title__icontains='war')[:5]
-    queryset = Book.objects.filter(title__icontains='war')[: 5]
-    # Specify your own template name/location
-    template_name = 'books/my_arbitrary_template_name_list.html'
+    # # your own name for the list as a template variable
+    # context_object_name = 'my_book_list'
+    # # Get 5 books containing the title war, below is same as following
+    # # def get_queryset(self):
+    # # return Book.objects.filter(title__icontains='war')[:5]
+    # queryset = Book.objects.filter(title__icontains='war')[: 5]
+    # # Specify your own template name/location
+    # template_name = 'books/my_arbitrary_template_name_list.html'
 
 
 def index(request):
