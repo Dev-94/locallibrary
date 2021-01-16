@@ -9,14 +9,7 @@ class BookDetailView(generic.DetailView):
 
 class BookListView(generic.ListView):
     model = Book
-    # # your own name for the list as a template variable
-    # context_object_name = 'my_book_list'
-    # # Get 5 books containing the title war, below is same as following
-    # # def get_queryset(self):
-    # # return Book.objects.filter(title__icontains='war')[:5]
-    # queryset = Book.objects.filter(title__icontains='war')[: 5]
-    # # Specify your own template name/location
-    # template_name = 'books/my_arbitrary_template_name_list.html'
+    paginate_by = 1
 
 
 def index(request):
@@ -32,11 +25,16 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Author.objects.count()
 
+    # Number of visits to this view, as counted in the session variable.
+    num_visits = request.session.get('num_visits', 1)
+    request.session['num_visits'] = num_visits + 1
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
         'num_instances_available': num_instances_available,
         'num_authors': num_authors,
+        'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
