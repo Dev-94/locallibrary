@@ -3,6 +3,10 @@ from catalog.models import Book, Author, BookInstance, Genre
 from django.views import generic
 
 
+class BookDetailView(generic.DetailView):
+    model = Book
+
+
 class BookListView(generic.ListView):
     model = Book
     # your own name for the list as a template variable
